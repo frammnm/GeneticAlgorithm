@@ -89,60 +89,52 @@ def G1DVariableBinaryStringCrossover(genome, **args):
    """
    sister = None
    brother = None
-   gMom = args["mom"]
-   gDad = args["dad"]
+   if len(args["mom"]) >= len(args["dad"]):
+      gMin = args["dad"]
+      gMax = args["mom"]
+   else:
+      gMin = args["mom"]
+      gMax = args["dad"]
 
-   if len(gMom) == 1:
+   if len(gMin) == 1:
       Util.raiseException("The Binary String have one element, can't use the Two Point Crossover method !", TypeError)
 
-   numRules = len(gDad)/gDad.ruleLength
-   while True:
-      cuts_mom = [rand_randint(0, len(gMom)), rand_randint(0,len(gMom))]
-      if cuts_mom[0] > cuts_mom[1]:
-         Util.listSwapElement(cuts_mom, 0, 1)
-      if cuts_mom[1] <= len(gDad):
-         cuts_dad = [cuts_mom[0],cuts_mom[1]]
-      else:
-         firstRuleToCut = rand_randint(1, numRules)
-         secondRuleToCut = rand_randint(firstRuleToCut, numRules)
+   numRules = len(gMax)/gMax.ruleLength
+   cuts_min = [rand_randint(0, len(gMin)), rand_randint(0,len(gMin))]
 
-         cutOnFirstRule = [cuts_mom[0] % gDad.ruleLength,cuts_mom[1] % gDad.ruleLength]
-         cuts_dad =[(firstRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[0],
-                    (secondRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[1]]
-      if ((cuts_mom[0] < cuts_mom[1]) and (cuts_dad[0] < cuts_dad[1])):
-         break
-   print cuts_mom
-   print cuts_dad
+   if cuts_min[0] > cuts_min[1]:
+      Util.listSwapElement(cuts_min, 0, 1)
+   
+   firstRuleToCut = rand_randint(1, numRules)
+   secondRuleToCut = rand_randint(firstRuleToCut, numRules)
+
+   cutOnFirstRule = [cuts_min[0] % gMax.ruleLength,cuts_min[1] % gMax.ruleLength]
+   cuts_max =[(firstRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[0],
+              (secondRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[1]]
    if args["count"] >= 1:
-      firstPart = gMom[0:cuts_mom[0]]
-      secondPart = gDad[cuts_dad[0]:cuts_dad[1]]
-      thirdPart = gMom[cuts_mom[1]:len(gMom)]
-      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gMom.ruleLength
-      sister = vbs.G1DVariableBinaryString(ruleLength=gDad.ruleLength,numRules=numRules)
+      firstPart = gMin[0:cuts_min[0]]
+      secondPart = gMax[cuts_max[0]:cuts_max[1]]
+      thirdPart = gMin[cuts_min[1]:len(gMin)]
+      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gMin.ruleLength
+      sister = vbs.G1DVariableBinaryString(ruleLength=gMax.ruleLength,numRules=numRules)
       sister.initialize()
-      print firstPart
-      print secondPart
-      print thirdPart
       sister[0:len(firstPart)] = firstPart
       sister[len(firstPart):len(firstPart)+len(secondPart)] = secondPart
       sister[len(firstPart)+len(secondPart):len(firstPart)+len(secondPart)+len(thirdPart)] = thirdPart
    if args["count"] == 2:
-      firstPart = gDad[0:cuts_dad[0]]
-      secondPart = gMom[cuts_mom[0]:cuts_mom[1]]
-      thirdPart = gDad[cuts_dad[1]:len(gDad)]
-      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gDad.ruleLength
-      brother = vbs.G1DVariableBinaryString(ruleLength=gDad.ruleLength,numRules=numRules)
+      firstPart = gMax[0:cuts_max[0]]
+      secondPart = gMin[cuts_min[0]:cuts_min[1]]
+      thirdPart = gMax[cuts_max[1]:len(gMax)]
+      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gMax.ruleLength
+      brother = vbs.G1DVariableBinaryString(ruleLength=gMax.ruleLength,numRules=numRules)
       brother.initialize()
-      print firstPart
-      print secondPart
-      print thirdPart
       brother[0:len(firstPart)] = firstPart
       brother[len(firstPart):len(firstPart)+len(secondPart)] = secondPart
       brother[len(firstPart)+len(secondPart):len(firstPart)+len(secondPart)+len(thirdPart)] = thirdPart
 
-   print "*************************** Sister ***************************"
+   print "************************** Sister ****************************"
    print sister
-   print "*************************** Brother ***************************"
+   print "************************** Brother ***************************"
    print brother
    return (sister,brother)
 

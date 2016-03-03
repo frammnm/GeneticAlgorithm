@@ -9,21 +9,15 @@ import sys
 def read_data_set(name):
 	try:
 		f = open(name,'r')
-		atributes = [[] for i in range(15)]
-		classifier = []
+		res = []
 		data = f.readlines()
 		for line in data:
+			atributes = []
 			words = line.split(',')
-			for i in range(16):
-				if i == 15:
-					if "\n" in words[i]:
-						classifier.append(words[i][:-1])
-					else:
-						classifier.append(words[i])
-				else:
-					atributes[i].append(words[i])
-
-		return (atributes,classifier)
+			for w in words:
+				atributes.append(w)
+			res.append(atributes)
+		return res
 		f.close()
 		return
 	except IOError as e:
