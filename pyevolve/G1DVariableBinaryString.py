@@ -1,6 +1,9 @@
 from GenomeBase import GenomeBase, G1DBase
 import Consts
 import Util
+from random import randint as rand_randint
+
+MAX_RULES = 5
 
 class G1DVariableBinaryString(G1DBase):
    """ G1DBinaryString Class - The 1D Variable Binary String chromosome
@@ -14,13 +17,15 @@ class G1DVariableBinaryString(G1DBase):
    :param numRules: the number of rules
 
    """
-   __slots__ = ["stringLength"]
+   __slots__ = ["stringLength","ruleLength"]
 
-   def __init__(self, rulelength=10, numRules=1):
+   def __init__(self, ruleLength=5, numRules=0):
       """ The initializator of G1DList representation """
-      super(G1DBinaryStringVariable, self).__init__(ruleLength*numRules,rulelength)
+      if numRules == 0:
+         numRules = rand_randint(1,MAX_RULES)
+      super(G1DVariableBinaryString, self).__init__(ruleLength*numRules)
       self.genomeList = []
-      self.stringLength = ruleLength*NumRules
+      self.stringLength = ruleLength*numRules
       self.ruleLength = ruleLength
       self.initializator.set(Consts.CDefG1DVariableBinaryStringInit)
       self.mutator.set(Consts.CDefG1DVariableBinaryStringMutator)
@@ -29,7 +34,7 @@ class G1DVariableBinaryString(G1DBase):
    def __setitem__(self, key, value):
       """ Set the specified value for an gene of List
 
-      >>> g = G1DBinaryString(5)
+      >>> g = G1DVariableBinaryString(5)
       >>> for i in xrange(len(g)):
       ...    g.append(1)
       >>> g[4] = 0
@@ -44,8 +49,9 @@ class G1DVariableBinaryString(G1DBase):
    def __repr__(self):
       """ Return a string representation of Genome """
       ret = GenomeBase.__repr__(self)
-      ret += "- G1DBinaryString\n"
+      ret += "- G1DVariableBinaryString\n"
       ret += "\tString length:\t %s\n" % (self.getListSize(),)
+      ret += "\tRule length:\t %s\n" % self.ruleLength
       ret += "\tString:\t\t %s\n\n" % (self.getBinary(),)
       return ret
 
@@ -53,7 +59,7 @@ class G1DVariableBinaryString(G1DBase):
       """ Converts the binary string to decimal representation
 
       Example:
-         >>> g = G1DBinaryString(5)
+         >>> g = G1DVariableBinaryString(5)
          >>> for i in xrange(len(g)):
          ...    g.append(0)
          >>> g[3] = 1
@@ -69,7 +75,7 @@ class G1DVariableBinaryString(G1DBase):
       """ Returns the binary string representation
 
       Example:
-         >>> g = G1DBinaryString(2)
+         >>> g = G1DVariableBinaryString(2)
          >>> g.append(0)
          >>> g.append(1)
          >>> g.getBinary()
@@ -84,7 +90,7 @@ class G1DVariableBinaryString(G1DBase):
       """ Appends an item to the list
 
       Example:
-         >>> g = G1DBinaryString(2)
+         >>> g = G1DVariableBinaryString(2)
          >>> g.append(0)
 
       :param value: value to be added, 0 or 1
@@ -98,10 +104,10 @@ class G1DVariableBinaryString(G1DBase):
       """ Copy genome to 'g'
 
       Example:
-         >>> g1 = G1DBinaryString(2)
+         >>> g1 = G1DVariableBinaryString(2)
          >>> g1.append(0)
          >>> g1.append(1)
-         >>> g2 = G1DBinaryString(2)
+         >>> g2 = G1DVariableBinaryString(2)
          >>> g1.copy(g2)
          >>> g2[1]
          1
@@ -116,16 +122,16 @@ class G1DVariableBinaryString(G1DBase):
       """ Return a new instace copy of the genome
 
       Example:
-         >>> g = G1DBinaryString(5)
+         >>> g = G1DVariableBinaryString(5)
          >>> for i in xrange(len(g)):
          ...    g.append(1)
          >>> clone = g.clone()
          >>> clone[0]
          1
 
-      :rtype: the G1DBinaryString instance clone
+      :rtype: the G1DVariableBinaryString instance clone
 
       """
-      newcopy = G1DBinaryString(self.getListSize())
+      newcopy = G1DVariableBinaryString(self.ruleLength,self.stringLength/self.ruleLength)
       self.copy(newcopy)
       return newcopy

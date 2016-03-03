@@ -12,6 +12,7 @@ from random import random as rand_random
 import math
 import Util
 import Consts
+import G1DVariableBinaryString as vbs
 
 #############################
 ##     1D Binary String    ##
@@ -81,7 +82,11 @@ def G1DBinaryStringXTwoPoint(genome, **args):
 ######################################
 
 def G1DVariableBinaryStringCrossover(genome, **args):
+   """ The 1D Variable Binary String crossover, Two Point
 
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   """
    sister = None
    brother = None
    gMom = args["mom"]
@@ -90,27 +95,56 @@ def G1DVariableBinaryStringCrossover(genome, **args):
    if len(gMom) == 1:
       Util.raiseException("The Binary String have one element, can't use the Two Point Crossover method !", TypeError)
 
-   cuts_mom = [rand_randint(1, len(gMom) - 1), rand_randint(1, len(gMom) - 1)]
-
-   if cuts_mom[0] > cuts_mom[1]:
-      Util.listSwapElement(cuts_mom, 0, 1)
-
    numRules = len(gDad)/gDad.ruleLength
-   firstRuleToCut = rand_randint(1, numRules)
-   secondRuleToCut = rand_randint(firstRuleToCut, numRules)
+   while True:
+      cuts_mom = [rand_randint(0, len(gMom)), rand_randint(0,len(gMom))]
+      if cuts_mom[0] > cuts_mom[1]:
+         Util.listSwapElement(cuts_mom, 0, 1)
+      if cuts_mom[1] <= len(gDad):
+         cuts_dad = [cuts_mom[0],cuts_mom[1]]
+      else:
+         firstRuleToCut = rand_randint(1, numRules)
+         secondRuleToCut = rand_randint(firstRuleToCut, numRules)
 
-   cutOnFirstRule[0] = cuts_mom[0]
-   while cutOnFirstRule[0] > gDad.ruleLength:
-      cutOnFirstRule[0] -= gDad.ruleLength
+         cutOnFirstRule = [cuts_mom[0] % gDad.ruleLength,cuts_mom[1] % gDad.ruleLength]
+         cuts_dad =[(firstRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[0],
+                    (secondRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[1]]
+      if ((cuts_mom[0] < cuts_mom[1]) and (cuts_dad[0] < cuts_dad[1])):
+         break
+   print cuts_mom
+   print cuts_dad
+   if args["count"] >= 1:
+      firstPart = gMom[0:cuts_mom[0]]
+      secondPart = gDad[cuts_dad[0]:cuts_dad[1]]
+      thirdPart = gMom[cuts_mom[1]:len(gMom)]
+      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gMom.ruleLength
+      sister = vbs.G1DVariableBinaryString(ruleLength=gDad.ruleLength,numRules=numRules)
+      sister.initialize()
+      print firstPart
+      print secondPart
+      print thirdPart
+      sister[0:len(firstPart)] = firstPart
+      sister[len(firstPart):len(firstPart)+len(secondPart)] = secondPart
+      sister[len(firstPart)+len(secondPart):len(firstPart)+len(secondPart)+len(thirdPart)] = thirdPart
+   if args["count"] == 2:
+      firstPart = gDad[0:cuts_dad[0]]
+      secondPart = gMom[cuts_mom[0]:cuts_mom[1]]
+      thirdPart = gDad[cuts_dad[1]:len(gDad)]
+      numRules = (len(firstPart)+len(secondPart)+len(thirdPart))/gDad.ruleLength
+      brother = vbs.G1DVariableBinaryString(ruleLength=gDad.ruleLength,numRules=numRules)
+      brother.initialize()
+      print firstPart
+      print secondPart
+      print thirdPart
+      brother[0:len(firstPart)] = firstPart
+      brother[len(firstPart):len(firstPart)+len(secondPart)] = secondPart
+      brother[len(firstPart)+len(secondPart):len(firstPart)+len(secondPart)+len(thirdPart)] = thirdPart
 
-   cutOnFirstRule[1] = cuts_mom[1]
-   while cutOnFirstRule[1] > gDad.ruleLength:
-      cutOnFirstRule[1] -= gDad.ruleLength
-
-   cuts_dad[0] = (firstRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[0]
-   cuts_dad[1] = (secondRuleToCut-1)*gDad.ruleLength+cutOnFirstRule[1]
-
-
+   print "*************************** Sister ***************************"
+   print sister
+   print "*************************** Brother ***************************"
+   print brother
+   return (sister,brother)
 
 def G1DBinaryStringXUniform(genome, **args):
    """ The G1DList Uniform Crossover """

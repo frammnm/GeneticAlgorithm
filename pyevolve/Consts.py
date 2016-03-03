@@ -445,7 +445,7 @@ CDefG1DBinaryStringInit = Initializators.G1DBinaryStringInitializator
 CDefG1DBinaryStringUniformProb = 0.5
 
 # - G1DVariableBinaryString defaults
-CDefG1DVariableBinaryStringMutator = Mutators.G1DVariableBinaryStringMutatorFlip
+CDefG1DVariableBinaryStringMutator = Mutators.G1DBinaryStringMutatorFlip
 CDefG1DVariableBinaryStringCrossover = Crossovers.G1DVariableBinaryStringCrossover
 CDefG1DVariableBinaryStringInit = Initializators.G1DVariableBinaryStringInitializator
 CDefG1DVariableBinaryStringUniformProb = 0.5

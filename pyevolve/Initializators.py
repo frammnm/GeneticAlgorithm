@@ -18,7 +18,6 @@ from random import randint as rand_randint, uniform as rand_uniform, choice as r
 import GTree
 import Util
 
-
 #############################
 ##     1D Binary String    ##
 #############################

@@ -18,13 +18,12 @@ class GenomeBase(object):
    """ GenomeBase Class - The base of all chromosome representation """
    __slots__ = ["evaluator", "initializator", "mutator", "crossover", "internalParams", "score", "fitness"]
 
-   def __init__(self,ruleLength=0):
+   def __init__(self):
       """Genome Constructor"""
       self.evaluator = FunctionSlot("Evaluator")
       self.initializator = FunctionSlot("Initializator")
       self.mutator = FunctionSlot("Mutator")
       self.crossover = FunctionSlot("Crossover")
-      self.ruleLength = ruleLength
 
       self.internalParams = {}
       self.score = 0.0
@@ -144,6 +143,7 @@ class GenomeBase(object):
       g.mutator = self.mutator
       g.crossover = self.crossover
       g.internalParams = self.internalParams
+      g.ruleLength = self.ruleLength
 
    def clone(self):
       """ Clone this GenomeBase
@@ -169,8 +169,8 @@ class G1DBase(GenomeBase):
    """
    __slots__ = ["genomeSize", "genomeList"]
 
-   def __init__(self, size, ruleLength=0):
-      super(G1DBase, self).__init__(ruleLength)
+   def __init__(self, size):
+      super(G1DBase, self).__init__()
       self.genomeSize = size
       self.genomeList = []
 
