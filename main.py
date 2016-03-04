@@ -12,20 +12,20 @@ from pyevolve import G1DBinaryString as bs
 
 atributes = [0 for i in range(16)]
 atributes[0] = ['a','b']
-atributes[1] = []
-atributes[2] = []
+atributes[1] = [] #float 
+atributes[2] = [] #float
 atributes[3] = ['u','y','l','t']
 atributes[4] = ['g','p','gg']
 atributes[5] = ['c','d','cc','i','j','k','m','r','q','w','x','e','aa','ff']
 atributes[6] = ['v','h','bb','j','n','z','dd','ff','o']
-atributes[7] = []
+atributes[7] = [] #float
 atributes[8] = ['t','f']
 atributes[9] = ['t','f']
-atributes[10] = []
+atributes[10] = [] #int 
 atributes[11] = ['t','f']
 atributes[12] = ['g','p','s']
-atributes[13] = []
-atributes[14] = []
+atributes[13] = [] #int 
+atributes[14] = [] #int 
 atributes[15] = ['+','-']
 
 def fitness(chromosome):
@@ -38,7 +38,7 @@ x.initialize()
 y.initialize()
 
 z = bs.G1DBinaryString()
-z.initialize()
+z.initialize()?
 
 print "*************************** Madre ***************************"
 print x
