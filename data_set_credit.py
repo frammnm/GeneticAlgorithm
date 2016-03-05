@@ -21,8 +21,10 @@ def read_data_set(name):
 			atributes = []
 			words = line.split(',')
 			i = 0
+			b = False
 			for w in words:
 				if w == "?":
+					b = True
 					i += 1
 					continue
 				if i == 1 : 
@@ -36,10 +38,13 @@ def read_data_set(name):
 				elif i == 13 :
 					list13.append(w)
 				elif i == 14 : 
-					list14.append(w) 
+					list14.append(w)
+				elif i == 15 : 
+					w = w.rstrip()
 				atributes.append(w)
 				i += 1
-			res.append(atributes)
+			if not b : 	
+				res.append(atributes)
 		f.close()
 
 		print  "max atr 1 : " + str(max(list1)) + " min atr 1 :" + str(min(list1)) + "rangos: " +  str(float(min(list1)) + (float(max(list1)) - float(min(list1)))/3) + ", " + str(float(min(list1)) + 2*((float(max(list1))-float(min(list1)))/3)) 
@@ -48,7 +53,7 @@ def read_data_set(name):
 		print  "max atr 4 : " + str(max(list10)) + " min atr 4 :" + str(min(list10)) + "rangos: " +  str(float(min(list10)) + (float(max(list10)) - float(min(list10)))/3) + ", " + str(float(min(list10)) + 2*((float(max(list10))-float(min(list10)))/3)) 
 		print  "max atr 5 : " + str(max(list13)) + " min atr 5 :" + str(min(list13)) + "rangos: " +  str(float(min(list13)) + (float(max(list13)) - float(min(list13)))/3) + ", " + str(float(min(list13)) + 2*((float(max(list13))-float(min(list13)))/3)) 
 		print  "max atr 6 : " + str(max(list14)) + " min atr 6 :" + str(min(list14)) + "rangos: " +  str(float(min(list14)) + (float(max(list14)) - float(min(list14)))/3) + ", " + str(float(min(list14)) + 2*((float(max(list14))-float(min(list14)))/3))
-
+		# print res 
 		return res
 	except IOError as e:
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
