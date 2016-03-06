@@ -12,20 +12,20 @@ from pyevolve import G1DBinaryString as bs
 
 atributes = []
 atributes.append(['a','b'])
-atributes.append([35.92,58.08])
-atributes.append([3.32,6.64])
+atributes.append([35.92,58.08,80.25])
+atributes.append([3.32,6.64,9.96])
 atributes.append(['u','y','l','t'])
 atributes.append(['g','p','gg'])
 atributes.append(['c','d','cc','i','j','k','m','r','q','w','x','e','aa','ff'])
 atributes.append(['v','h','bb','j','n','z','dd','ff','o'])
-atributes.append([3.15,6.31])
+atributes.append([3.15,6.31,9.46])
 atributes.append(['t','f'])
 atributes.append(['t','f'])
-atributes.append([22.33,44.67])
+atributes.append([22.33,44.67,67])
 atributes.append(['t','f'])
 atributes.append(['g','p','s'])
-atributes.append([666.667,1333.33])
-atributes.append([330,660])
+atributes.append([666.667,1333.33,2000])
+atributes.append([330,660,990])
 atributes.append(['+','-'])
 
 def string_split_iterator(string,x=10):
@@ -65,7 +65,7 @@ def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f',
                 low = high
                 high += len(atributes[i+1])
             if success:
-                atr.append(rule[low:high])
+                atr.append(rule[low:])
                 if (atr[15][0] == 1) and (e[15] == '+'):
                     score += 1
                 elif (atr[15][0] == 0) and (e[15] == '-'):
@@ -79,5 +79,5 @@ y = vbs.G1DVariableBinaryString(ruleLength=60,numRules=1)
 x.initialize()
 y.initialize()
 
-print x
-fitness(x)
+print fitness(y)
+print y
