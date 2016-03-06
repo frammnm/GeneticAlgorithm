@@ -62,10 +62,12 @@ def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f',
                             success = False
                             break
                     j += 1
+                if not success:
+                    break
                 low = high
                 high += len(atributes[i+1])
-            atr.append(rule[low:high])
             if success:
+                atr.append(rule[low:high])
                 if (atr[15][0] == 1) and (e[15] == '+'):
                     score += 1
                 elif (atr[15][0] == 0) and (e[15] == '-'):
