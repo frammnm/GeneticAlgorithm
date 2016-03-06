@@ -37,7 +37,6 @@ def string_split_iterator(string,x=10):
         yield string[pos:pos+x]
 
 def fitness(chromosome,examples=examples):
-    print examples
     score = 0
     for e in examples:
         atr = []
