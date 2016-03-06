@@ -42,17 +42,14 @@ def read_data_set(name):
 			res.append(atributes)
 		f.close()
 
-		print  "max atr 1 : " + str(max(list1)) + " min atr 1 :" + str(min(list1)) + "rangos: " +  str(float(min(list1)) + (float(max(list1)) - float(min(list1)))/3) + ", " + str(float(min(list1)) + 2*((float(max(list1))-float(min(list1)))/3)) 
-		print  "max atr 2 : " + str(max(list2)) + " min atr 2 :" + str(min(list2)) + "rangos: " +  str(float(min(list2)) + (float(max(list2)) - float(min(list2)))/3) + ", " + str(float(min(list2)) + 2*((float(max(list2))-float(min(list2)))/3)) 
-		print  "max atr 3 : " + str(max(list7)) + " min atr 3 :" + str(min(list7)) + "rangos: " +  str(float(min(list7)) + (float(max(list7)) - float(min(list7)))/3) + ", " + str(float(min(list7)) + 2*((float(max(list7))-float(min(list7)))/3)) 
-		print  "max atr 4 : " + str(max(list10)) + " min atr 4 :" + str(min(list10)) + "rangos: " +  str(float(min(list10)) + (float(max(list10)) - float(min(list10)))/3) + ", " + str(float(min(list10)) + 2*((float(max(list10))-float(min(list10)))/3)) 
-		print  "max atr 5 : " + str(max(list13)) + " min atr 5 :" + str(min(list13)) + "rangos: " +  str(float(min(list13)) + (float(max(list13)) - float(min(list13)))/3) + ", " + str(float(min(list13)) + 2*((float(max(list13))-float(min(list13)))/3)) 
-		print  "max atr 6 : " + str(max(list14)) + " min atr 6 :" + str(min(list14)) + "rangos: " +  str(float(min(list14)) + (float(max(list14)) - float(min(list14)))/3) + ", " + str(float(min(list14)) + 2*((float(max(list14))-float(min(list14)))/3))
+		# print  "max atr 1 : " + str(max(list1)) + " min atr 1 :" + str(min(list1)) + "rangos: " +  str(float(min(list1)) + (float(max(list1)) - float(min(list1)))/3) + ", " + str(float(min(list1)) + 2*((float(max(list1))-float(min(list1)))/3)) 
+		# print  "max atr 2 : " + str(max(list2)) + " min atr 2 :" + str(min(list2)) + "rangos: " +  str(float(min(list2)) + (float(max(list2)) - float(min(list2)))/3) + ", " + str(float(min(list2)) + 2*((float(max(list2))-float(min(list2)))/3)) 
+		# print  "max atr 3 : " + str(max(list7)) + " min atr 3 :" + str(min(list7)) + "rangos: " +  str(float(min(list7)) + (float(max(list7)) - float(min(list7)))/3) + ", " + str(float(min(list7)) + 2*((float(max(list7))-float(min(list7)))/3)) 
+		# print  "max atr 4 : " + str(max(list10)) + " min atr 4 :" + str(min(list10)) + "rangos: " +  str(float(min(list10)) + (float(max(list10)) - float(min(list10)))/3) + ", " + str(float(min(list10)) + 2*((float(max(list10))-float(min(list10)))/3)) 
+		# print  "max atr 5 : " + str(max(list13)) + " min atr 5 :" + str(min(list13)) + "rangos: " +  str(float(min(list13)) + (float(max(list13)) - float(min(list13)))/3) + ", " + str(float(min(list13)) + 2*((float(max(list13))-float(min(list13)))/3)) 
+		# print  "max atr 6 : " + str(max(list14)) + " min atr 6 :" + str(min(list14)) + "rangos: " +  str(float(min(list14)) + (float(max(list14)) - float(min(list14)))/3) + ", " + str(float(min(list14)) + 2*((float(max(list14))-float(min(list14)))/3))
 
 		return res
 	except IOError as e:
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
 		sys.exit(1)
-
-
-read_data_set("data_set/crx.data")

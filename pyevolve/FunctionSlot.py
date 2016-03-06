@@ -125,6 +125,7 @@ class FunctionSlot(object):
          The `weight` parameter.
 
       """
+
       self.__typeCheck(func)
       self.funcList.append(func)
       self.funcWeights.append(weight)
@@ -169,6 +170,7 @@ class FunctionSlot(object):
       :param args: this args dictionary is passed to the function
 
       """
+
       if len(self.funcList) <= 0:
          Util.raiseException("No function defined: " + self.slotName)
 

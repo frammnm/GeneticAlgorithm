@@ -5,10 +5,11 @@
 #    - Gabriel   Alvarez  09-10029
 
 import data_set_credit
-from pyevolve import G1DVariableBinaryString as vbs
-from pyevolve import GenomeBase as gb
-from pyevolve import Crossovers as xs
-from pyevolve import G1DBinaryString as bs
+from pyevolve import G1DVariableBinaryString
+from pyevolve import G1DBinaryString
+from pyevolve import GSimpleGA
+from pyevolve import Selectors
+from pyevolve import Mutators
 
 atributes = []
 atributes.append(['a','b'])
@@ -28,12 +29,15 @@ atributes.append([666.667,1333.33,2000])
 atributes.append([330,660,990])
 atributes.append(['+','-'])
 
+examples = data_set_credit.read_data_set('data_set/test_set.txt')
+
 def string_split_iterator(string,x=10):
     size = len(string)//x
     for pos in range(0, len(string), x):
         yield string[pos:pos+x]
 
-def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f','t','01','t','g','00416','21','-']]):
+def fitness(chromosome,examples=examples):
+    print examples
     score = 0
     for e in examples:
         atr = []
@@ -74,10 +78,26 @@ def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f',
         return 0.0
     return float(score)/float(len(examples))
 
-x = vbs.G1DVariableBinaryString(ruleLength=60,numRules=2)
-y = vbs.G1DVariableBinaryString(ruleLength=60,numRules=1)
-x.initialize()
-y.initialize()
+def run_main():
+    # Genome instance
+    genome = G1DVariableBinaryString.G1DVariableBinaryString(ruleLength=60)
 
-print fitness(y)
-print y
+    # The evaluator function (objective function)
+    genome.evaluator.set(fitness)
+    genome.mutator.set(Mutators.G1DBinaryStringMutatorFlip)
+
+    # Genetic Algorithm Instance
+    ga = GSimpleGA.GSimpleGA(genome)
+    ga.selector.set(Selectors.GTournamentSelector)
+    ga.setGenerations(70)
+
+    # Do the evolution, with stats dump
+    # frequency of 10 generations
+    ga.evolve(freq_stats=20)
+
+    # Best individual
+    print ga.bestIndividual()
+
+if __name__ == "__main__":
+    run_main()
+   

@@ -18,6 +18,7 @@ from random import randint as rand_randint, uniform as rand_uniform, choice as r
 import GTree
 import Util
 
+
 #############################
 ##     1D Binary String    ##
 #############################
@@ -279,4 +280,3 @@ def GTreeGPInitializator(genome, **args):
     genome.setRoot(root)
     genome.processNodes()
     assert genome.getHeight() <= max_depth
-

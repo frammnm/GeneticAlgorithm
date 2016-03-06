@@ -143,7 +143,6 @@ class GenomeBase(object):
       g.mutator = self.mutator
       g.crossover = self.crossover
       g.internalParams = self.internalParams
-      g.ruleLength = self.ruleLength
 
    def clone(self):
       """ Clone this GenomeBase
