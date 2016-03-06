@@ -42,9 +42,8 @@ def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f',
             low = 0
             high = len(atributes[0])
             for i in range(15):
-                j = 0
                 atr.append(rule[low:high])
-                while j < len(atr[i]):
+                for j in range(len(atr[i])):
                     # The atribute is continous.
                     if i in [1,2,7,10,13,14]:
                         if (atr[i][j] == 0) and (float(e[i]) <= atributes[i][j]):
@@ -61,7 +60,6 @@ def fitness(chromosome,examples=[['b','25.67','3.25','u','g','c','h','2.29','f',
                         if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
                             success = False
                             break
-                    j += 1
                 if not success:
                     break
                 low = high
