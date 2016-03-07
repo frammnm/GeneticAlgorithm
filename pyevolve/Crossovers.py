@@ -115,8 +115,8 @@ def G1DVariableBinaryStringCrossover(genome, **args):
       gMin = args["mom"]
       gMax = args["dad"]
 
-   if len(gMin) == 1:
-      Util.raiseException("The Binary String have one element, can't use the Two Point Crossover method !", TypeError)
+   # if len(gMin) <= 1 or len(gMax) <= 1:
+   #    Util.raiseException("The Binary String have one element, can't use the Two Point Crossover method !", TypeError)
 
    numRules = len(gMax)/gMax.ruleLength
    cutOnFirstRule = [0,0]
@@ -126,6 +126,7 @@ def G1DVariableBinaryStringCrossover(genome, **args):
       if cuts_min[0] > cuts_min[1]:
          Util.listSwapElement(cuts_min, 0, 1)
       
+      print numRules
       firstRuleToCut = rand_randint(1, numRules)
       secondRuleToCut = rand_randint(firstRuleToCut, numRules)
 

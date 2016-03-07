@@ -6,7 +6,7 @@ from random import randint as rand_randint
 MAX_RULES = 5
 
 class G1DVariableBinaryString(G1DBase):
-   """ G1DBinaryString Class - The 1D Variable Binary String chromosome
+   """ G1DVariableBinaryString Class - The 1D Variable Binary String chromosome
 
    This chromosome class extends the :class:`GenomeBase.G1DBase` class.
 

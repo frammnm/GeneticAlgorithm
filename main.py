@@ -6,7 +6,6 @@
 
 import data_set_credit
 from pyevolve import G1DVariableBinaryString
-from pyevolve import G1DBinaryString
 from pyevolve import GSimpleGA
 from pyevolve import Selectors
 from pyevolve import Mutators
@@ -29,7 +28,8 @@ atributes.append([666.667,1333.33,2000])
 atributes.append([330,660,990])
 atributes.append(['+','-'])
 
-examples = data_set_credit.read_data_set('data_set/test_set.txt')
+data_set = data_set_credit.read_data_set('data_set/test_set.txt')
+examples = [data_set[0]]
 
 def string_split_iterator(string,x=10):
     size = len(string)//x
@@ -71,11 +71,14 @@ def fitness(chromosome,examples=examples):
                 atr.append(rule[low:])
                 if (atr[15][0] == 1) and (e[15] == '+'):
                     score += 1
+                    break
                 elif (atr[15][0] == 0) and (e[15] == '-'):
                     score += 1
+                    break
+                break
     if score == 0:
         return 0.0
-    return float(score)/float(len(examples))
+    return (float(score)/float(len(examples)))**2
 
 def run_main():
     # Genome instance
@@ -87,8 +90,8 @@ def run_main():
 
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
-    ga.selector.set(Selectors.GTournamentSelector)
-    ga.setGenerations(70)
+    ga.selector.set(Selectors.GRouletteWheel)
+    ga.setGenerations(1000)
 
     # Do the evolution, with stats dump
     # frequency of 10 generations
