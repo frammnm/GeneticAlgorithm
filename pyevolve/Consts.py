@@ -428,9 +428,9 @@ CDefPopScale = Scaling.LinearScaling
 
 # - GA Engine defaults
 CDefGAGenerations = 100
-CDefGAMutationRate = 0.02
-CDefGACrossoverRate = 0.9
-CDefGAPopulationSize = 80
+CDefGAMutationRate = 0.001
+CDefGACrossoverRate = 0.6
+CDefGAPopulationSize = 100
 CDefGASelector = Selectors.GRankSelector
 CDefGAElitismReplacement = 1
 
