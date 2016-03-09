@@ -21,10 +21,10 @@ atributes.append(['v','h','bb','j','n','z','dd','ff','o']) # 6
 atributes.append([3.15,6.31,9.46]) # 7
 atributes.append(['t','f']) # 8
 atributes.append(['t','f']) # 9
-atributes.append([22.33,44.67,67]) # 10
+atributes.append([22,45,67]) # 10
 atributes.append(['t','f']) # 11
 atributes.append(['g','p','s']) # 12
-atributes.append([666.667,1333.33,2000]) # 13
+atributes.append([667,1333,2000]) # 13
 atributes.append([330,660,990]) # 14
 atributes.append(['+','-']) # 15
 
@@ -47,11 +47,15 @@ def matches(chromosome,examples=examples):
                 for j in range(len(atr[i])):
                     # The atribute is continous.
                     if i in [1,2,7,10,13,14]:
-                        if (atr[i][j] == 0) and (float(e[i]) <= atributes[i][j]):
+                        if '.' in e[i]:
+                            num = float(e[i])
+                        else:
+                            num = int(e[i])
+                        if (atr[i][j] == 0) and (num <= atributes[i][j]):
                             return False
-                        elif (atr[i][j+1] == 0) and ((atributes[i][j] <= float(e[i])) and (float(e[i]) <= atributes[i][j+1])):
+                        elif (atr[i][j+1] == 0) and ((atributes[i][j] <= num) and (num<= atributes[i][j+1])):
                             return False
-                        elif (atr[i][j+2] == 0) and (atributes[i][j+1] <= float(e[i])):
+                        elif (atr[i][j+2] == 0) and (atributes[i][j+1] <= num):
                             return False
                         break
                     else:
@@ -68,9 +72,9 @@ def matches(chromosome,examples=examples):
                 return True
     return False
 
-def fitness(chromosome,examples=examples):
+def fitness(chromosome,examples=data_set):
     score = 0
-    if (chromosome.stringLength/chromosome.ruleLength) > len(data_set):
+    if (chromosome.stringLength/chromosome.ruleLength) > 5:
         return 0.0
     for e in examples:
         atr = []
@@ -82,12 +86,22 @@ def fitness(chromosome,examples=examples):
                 for j in range(len(atr[i])):
                     # The atribute is continous.
                     if i in [1,2,7,10,13,14]:
-                        if (atr[i][j] == 0) and (float(e[i]) <= atributes[i][j]):
+                        if '.' in e[i]:
+                            num = float(e[i])
+                        else:
+                            num = int(e[i])
+                        if (atr[i][j] == 0) and (num < atributes[i][j]):
                             success = False
-                        elif (atr[i][j+1] == 0) and ((atributes[i][j] <= float(e[i])) and (float(e[i]) <= atributes[i][j+1])):
+                            break
+                        elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
                             success = False
-                        elif (atr[i][j+2] == 0) and (atributes[i][j+1] <= float(e[i])):
+                            break
+                        elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
                             success = False
+                            break
+                        elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
+                            success = False
+                            break
                         break
                     else:
                         if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
@@ -105,7 +119,6 @@ def fitness(chromosome,examples=examples):
                 break
     if score == 0:
         return 0.0
-    print "entre"
     return (float(score)/float(len(examples)))**2
 
 def run_main():
@@ -122,20 +135,20 @@ def run_main():
     ga.setGenerations(1000)
     eval_func = 0
     # GABIL.
-    for i in data_set[1:]:
-        if eval_func == 0:
+    # for i in data_set[1:]:
+    #     if eval_func == 0:
             # Do the evolution, with stats dump
             # frequency of 20 generations
-            ga.evolve(freq_stats=20)
+    ga.evolve(freq_stats=20)
 
         # Best individual
-        print ga.bestIndividual()
+    print ga.bestIndividual()
         # if matches(ga.bestIndividual(),examples = [i]):
         #     eval_func = 1
         # else:
         #     eval_func = 0
 
-        examples.append(i)
+        #examples.append(i)
 
 
 if __name__ == "__main__":

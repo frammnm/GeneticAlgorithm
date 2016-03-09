@@ -135,7 +135,7 @@ def G1DVariableBinaryStringCrossover(genome, **args):
       #    cutOnFirstRule[1] = secondRuleToCut*gMax.ruleLength
       cuts_max =[(firstRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[0],
                  (secondRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[1]]
-   print " - Number of rules on max: ",numRules," - cuts_min: ",cuts_min," - cuts_max: ",cuts_max
+   # print " - Number of rules on max: ",numRules," - cuts_min: ",cuts_min," - cuts_max: ",cuts_max
    if args["count"] >= 1:
       firstPart = gMin[0:cuts_min[0]]
       secondPart = gMax[cuts_max[0]:cuts_max[1]]
