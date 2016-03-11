@@ -121,18 +121,22 @@ def run_main():
     ga2 = GSimpleGA.GSimpleGA(genome)
     ga2.setElitism(False)
     ga2.selector.set(Selectors.GTournamentSelector)
-    ga2.setGenerations(100)
     ga2.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
     eval_func = 0
-    # GABIL.
-    j = 1 
-    for i in data_set[1:]:
     
+    # GABIL.
+    j = 1
+    for i in data_set[1:]:
+        
         if eval_func == 0:
+            ga.setGenerations(100*j)
             # Do the evolution, with stats dump
             # frequency of 20 generations
             # if matches(ga.bestIndividual(),examples = [i]):
-            ga2.evolve(freq_stats=10)
+            print " ********************************************************************************"
+            ga.evolve(freq_stats=10)
+            print " ********************************************************************************"
+            j += 1
 
         if matches(ga.bestIndividual(),e=i):
             eval_func = 1

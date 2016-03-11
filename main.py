@@ -32,6 +32,8 @@ data_set = data_set_credit.read_data_set('data_set/training_set.txt')
 test_set = data_set_credit.read_data_set('data_set/test_set.txt')
 examples = [data_set[0]]
 
+ruleLength = 60
+
 def string_split_iterator(string,x=10):
     size = len(string)//x
     for pos in range(0, len(string), x):
@@ -39,7 +41,7 @@ def string_split_iterator(string,x=10):
 
 def matches(chromosome,e):
     atr = []
-    for rule in string_split_iterator(chromosome,x=chromosome.ruleLength):
+    for rule in string_split_iterator(chromosome,x=ruleLength):
         low = 0
         high = len(atributes[0])
         for i in range(15):
@@ -76,7 +78,7 @@ def matches(chromosome,e):
 
 def fitness(chromosome,examples=examples):
     score = 0
-    if (chromosome.stringLength/chromosome.ruleLength) > 15 :
+    if (len(chromosome)/ruleLength) > 15 :
         return 0.0
     for e in examples:
         if matches(chromosome,e):
@@ -123,20 +125,22 @@ def run_main():
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
     ga.selector.set(Selectors.GTournamentSelector)
-    ga.setGenerations(100)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
     eval_func = 0
 
     # GABIL.
+    j = 1
     for i in data_set[1:]:
-    
+        
         if eval_func == 0:
+            ga.setGenerations(100*j)
             # Do the evolution, with stats dump
             # frequency of 20 generations
             # if matches(ga.bestIndividual(),examples = [i]):
             print " ********************************************************************************"
             ga.evolve(freq_stats=10)
             print " ********************************************************************************"
+            j += 1
 
         if matches(ga.bestIndividual(),e=i):
             eval_func = 1
