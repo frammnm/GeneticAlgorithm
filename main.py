@@ -62,7 +62,6 @@ def matches(chromosome,e):
                     break
                 else:
                     if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
-                        success = False
                         return False
             low = high
             high += len(atributes[i+1])
@@ -77,8 +76,7 @@ def matches(chromosome,e):
 
 def fitness(chromosome,examples=examples):
     score = 0
-    print len(examples)
-    if (chromosome.stringLength/chromosome.ruleLength) > 5 :
+    if (chromosome.stringLength/chromosome.ruleLength) > 15 :
         return 0.0
     for e in examples:
         if matches(chromosome,e):
@@ -89,14 +87,12 @@ def fitness(chromosome,examples=examples):
 
 def predict(chromosome,examples=data_set):
     score = 0
-    if (chromosome.stringLength/chromosome.ruleLength) > 5 :
-        return 0.0
     for e in examples:
         if matches(chromosome,e):
             score +=1 
     if score == 0:
         return 0.0
-    return (float(score)/float(len(examples)))
+    return 100*(float(score)/float(len(examples)))
 
 def run_main():
     # Genome instance
@@ -127,11 +123,10 @@ def run_main():
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
     ga.selector.set(Selectors.GTournamentSelector)
-    ga.setGenerations(20)
+    ga.setGenerations(100)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
     eval_func = 0
 
-    j = 1 
     # GABIL.
     for i in data_set[1:]:
     
@@ -139,9 +134,9 @@ def run_main():
             # Do the evolution, with stats dump
             # frequency of 20 generations
             # if matches(ga.bestIndividual(),examples = [i]):
-            print "**********************************************************************************************"
+            print " ********************************************************************************"
             ga.evolve(freq_stats=10)
-            print "**********************************************************************************************"
+            print " ********************************************************************************"
 
         if matches(ga.bestIndividual(),e=i):
             eval_func = 1
@@ -149,13 +144,11 @@ def run_main():
             eval_func = 0
 
         examples.append(i)
-        print (j)
-        j += 1
 
     f = open('RespuestaGABIL.txt', 'a')
 
     f.write(str(ga.bestIndividual()))
-    f.write("Prediccion " + str(fitness2(ga.bestIndividual().genomeList,test_set)) +"\n")
+    f.write("Prediccion " + str(predict(ga.bestIndividual().genomeList,test_set)) + "%" + "\n")
 
     f.close()
 

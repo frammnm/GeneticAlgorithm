@@ -37,139 +37,63 @@ def string_split_iterator(string,x=10):
     for pos in range(0, len(string), x):
         yield string[pos:pos+x]
 
-def matches(chromosome,examples=examples):
-    for e in examples:
-        atr = []
-        for rule in string_split_iterator(chromosome,x=chromosome.ruleLength):
-            low = 0
-            high = len(atributes[0])
-            for i in range(15):
-                atr.append(rule[low:high])
-                for j in range(len(atr[i])):
-                    # The atribute is continous.
-                    if i in [1,2,7,10,13,14]:
-                        if '.' in e[i]:
-                            num = float(e[i])
-                        else:
-                            num = int(e[i])
-                        if (atr[i][j] == 0) and (num < atributes[i][j]):
-                            return False
-                        elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
-                            return False
-                        elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
-                            return False
-                        elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
-                            return False
-                        break
+def matches(chromosome,e):
+    atr = []
+    for rule in string_split_iterator(chromosome,x=chromosome.ruleLength):
+        low = 0
+        high = len(atributes[0])
+        for i in range(15):
+            atr.append(rule[low:high])
+            for j in range(len(atr[i])):
+                # The atribute is continous.
+                if i in [1,2,7,10,13,14]:
+                    if '.' in e[i]:
+                        num = float(e[i])
                     else:
-                        if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
-                            success = False
-                            return False
-                low = high
-                high += len(atributes[i+1])
+                        num = int(e[i])
+                    if (atr[i][j] == 0) and (num < atributes[i][j]):
+                        return False
+                    elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
+                        return False
+                    elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
+                        return False
+                    elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
+                        return False
+                    break
+                else:
+                    if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
+                        return False
+            low = high
+            high += len(atributes[i+1])
 
-            atr.append(rule[low:])
-            if (atr[15][0] == 1) and (e[15] == '+'):
-                return True
-            elif (atr[15][0] == 0) and (e[15] == '-'):
-                return True
+        atr.append(rule[low:])
+        if (atr[15][0] == 1) and (e[15] == '+'):
+            return True
+        elif (atr[15][0] == 0) and (e[15] == '-'):
+            return True
+
     return False
 
 def fitness(chromosome,examples=examples):
     score = 0
-    if (chromosome.stringLength/chromosome.ruleLength) > 5:
+    if (chromosome.stringLength/chromosome.ruleLength) > 15 :
         return 0.0
     for e in examples:
-        atr = []
-        for rule in string_split_iterator(chromosome,x=chromosome.ruleLength):
-            low = 0
-            high = len(atributes[0])
-            for i in range(15):
-                atr.append(rule[low:high])
-                for j in range(len(atr[i])):
-                    # The atribute is continous.
-                    if i in [1,2,7,10,13,14]:
-                        if '.' in e[i]:
-                            num = float(e[i])
-                        else:
-                            num = int(e[i])
-                        if (atr[i][j] == 0) and (num < atributes[i][j]):
-                            success = False
-                            break
-                        elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
-                            success = False
-                            break
-                        elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
-                            success = False
-                            break
-                        elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
-                            success = False
-                            break
-                        break
-                    else:
-                        if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
-                            success = False
-                            break
-                low = high
-                high += len(atributes[i+1])
-
-            atr.append(rule[low:])
-            if (atr[15][0] == 1) and (e[15] == '+'):
-                score += 1
-                break
-            elif (atr[15][0] == 0) and (e[15] == '-'):
-                score += 1
-                break
+        if matches(chromosome,e):
+            score +=1 
     if score == 0:
         return 0.0
-    return (float(score)/float(len(examples)))**2
+    return (100*(float(score)/float(len(examples)))**2)
 
-def fitness2(chromosome,examples=data_set):
+def predict(chromosome,examples=data_set):
     score = 0
     for e in examples:
-        atr = []
-        for rule in string_split_iterator(chromosome,x=60):
-            low = 0
-            high = len(atributes[0])
-            for i in range(15):
-                atr.append(rule[low:high])
-                for j in range(len(atr[i])):
-                    # The atribute is continous.
-                    if i in [1,2,7,10,13,14]:
-                        if '.' in e[i]:
-                            num = float(e[i])
-                        else:
-                            num = int(e[i])
-                        if (atr[i][j] == 0) and (num < atributes[i][j]):
-                            success = False
-                            break
-                        elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
-                            success = False
-                            break
-                        elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
-                            success = False
-                            break
-                        elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
-                            success = False
-                            break
-                        break
-                    else:
-                        if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
-                            success = False
-                            break
-                low = high
-                high += len(atributes[i+1])
-
-            atr.append(rule[low:])
-            if (atr[15][0] == 1) and (e[15] == '+'):
-                score += 1
-                break
-            elif (atr[15][0] == 0) and (e[15] == '-'):
-                score += 1
-                break
+        if matches(chromosome,e):
+            score +=1 
     if score == 0:
         return 0.0
-    return (float(score)/float(len(examples)))
+    return 100*(float(score)/float(len(examples)))
+
 
 def run_main():
     # Genome instance
@@ -179,28 +103,27 @@ def run_main():
     genome.evaluator.set(fitness)
     genome.mutator.set(Mutators.G1DBinaryStringMutatorFlip)
 
-    #NO GABIL 
-    examples = data_set
-    ga = GSimpleGA.GSimpleGA(genome)
-    ga.setElitism(False)
-    ga.selector.set(Selectors.GRouletteWheel)
-    ga.setGenerations(1000)
+    # #NO GABIL 
+    # examples = data_set
+    # ga = GSimpleGA.GSimpleGA(genome)
+    # ga.setElitism(False)
+    # ga.selector.set(Selectors.GRouletteWheel)
+    # ga.setGenerations(1000)
 
-    ga.evolve(freq_stats=10)
+    # ga.evolve(freq_stats=10)
 
-    f = open('Respuesta4.txt', 'a')
+    # f = open('Respuesta4.txt', 'a')
 
-    f.write(str(ga.bestIndividual()))
-    f.write("Prediccion" + str(fitness2(ga.bestIndividual().genomeList,test_set)) +"\n")
+    # f.write(str(ga.bestIndividual()))
+    # f.write("Prediccion" + str(fitness2(ga.bestIndividual().genomeList,test_set)) +"\n")
 
 
 
     # Genetic Algorithm Instance
-    examples = [data_set[0]]
     ga = GSimpleGA.GSimpleGA(genome)
     ga.setElitism(False)
     ga.selector.set(Selectors.GRouletteWheel)
-    ga.setGenerations(20)
+    ga.setGenerations(100)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
     eval_func = 0
 
@@ -214,7 +137,7 @@ def run_main():
             ga.evolve(freq_stats=10)
 
 
-        if matches(ga.bestIndividual(),examples=[i]):
+        if matches(ga.bestIndividual(),e=i):
             eval_func = 1
         else:
             eval_func = 0
@@ -225,7 +148,7 @@ def run_main():
     f = open('RespuestaGABIL4.txt', 'a')
 
     f.write(str(ga.bestIndividual()))
-    f.write("Prediccion" + str(fitness2(ga.bestIndividual().genomeList,test_set)) +"\n")
+    f.write("Prediccion" + str(predict(ga.bestIndividual().genomeList,test_set))+ "%" +"\n")
 
     f.close()
 
