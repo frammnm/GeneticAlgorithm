@@ -1,0 +1,612 @@
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 000010111111011010110010000110011000101011001101001110011111
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 001100101101100100100011100000001011110110100001100100111011
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111110000000101011010010100011101100110011000011011111100001
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.188000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111101110101100111100011101000110110000010000000000011101101
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 001111100000110111101011111111011100101110100011000101011011
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 1.000000
+	Fitness:		 1.188000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111011111011110110011101100010011001111100100001101011000011
+
+Prediccion0.376923076923
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 100001001110110000010110100111100111110101000110010111110011
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 110110010100011100100000001001010111101110110011101101000010
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 000001010110111001110100110001100111001100001001011110001111
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 001110100111110000001001100001011001001100010101100101101000
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 010000000111101011111011001101100011111010100010100110011100
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 000101111000111101111011100110110110111100000000011000100010
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 010000101001001101100001001011101101010011011110010100010010
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 120
+	Rule length:	 60
+	String:		 011111100101100100001001100011001111011101010001001100001011011111000100000001111001010111011101101101110100000111000101
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 010000001001100010010111000111000111001011110100101111110000
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 480
+	Rule length:	 60
+	String:		 001010000110111100011011011001000111010101010011100001101110000110010011101110110011011101000111110100001011100100000110011110011010100100010111011111110111110101110011100001101110100110100010101100010010011101100111010101001011100100010101000100000000111100110110111101001000010100000011001100000110101110000000100010000110111101000111010100001011100000000110001010010110110100010110111101000111010100001011100000011101101110010010101100110010011001000111100101000111100110010111
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 001000101111001001001000100001011100011001111100000011111111
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 240
+	Rule length:	 60
+	String:		 011101111001001000100100111010011010001110111110101111010000011000001001001111001111101010011011100001110100001111111000000010100101101000111001101111000100101010010110101101000011101001101001001011100011100100010110001011111111111001001001
+
+Prediccion0.0
+- GenomeBase
+	Score:			 0.000000
+	Fitness:		 0.000000
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 001110000100000111010010010110010110111101011010000011100011
+
+- GenomeBase
+	Score:			 0.278493
+	Fitness:		 0.330803
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111111101110111111111111111111111111111111111110111111101100
+
+- GenomeBase
+	Score:			 0.003513
+	Fitness:		 0.000127
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111101101110110111100110011111000001111001111110101111011111
+
+- GenomeBase
+	Score:			 27.849332
+	Fitness:		 27.891664
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 60
+	Rule length:	 60
+	String:		 111101101110111111111111111111111111111111111101111111111110
+
