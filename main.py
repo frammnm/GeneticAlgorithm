@@ -9,6 +9,7 @@ from pyevolve import G1DVariableBinaryString
 from pyevolve import GSimpleGA
 from pyevolve import Selectors
 from pyevolve import Mutators
+import sys
 
 atributes = []
 atributes.append(['a','b']) # 0
@@ -32,7 +33,7 @@ data_set = data_set_credit.read_data_set('data_set/training_set.txt')
 test_set = data_set_credit.read_data_set('data_set/test_set.txt')
 examples = [data_set[0]]
 
-ruleLength = 60
+ruleLength = sum(len(atributes[i]) for i in range(len(atributes)))-1
 
 def string_split_iterator(string,x=10):
     size = len(string)//x
@@ -82,21 +83,29 @@ def fitness(chromosome,examples=examples):
         return 0.0
     for e in examples:
         if matches(chromosome,e):
-            score +=1 
+            score += 1 
     if score == 0:
         return 0.0
     return (100*(float(score)/float(len(examples)))**2)
 
-def predict(chromosome,examples=data_set):
+def predict(chromosome,examples=test_set):
     score = 0
     for e in examples:
         if matches(chromosome,e):
-            score +=1 
+            score += 1 
     if score == 0:
         return 0.0
     return 100*(float(score)/float(len(examples)))
 
 def run_main():
+    # First arg -f name of the file that contains the results.
+    # Second arg -s [0,1] if 1 then RouletteWheel elif 0 then Tournament
+    # Third arg -e [0,1] if 1 then Elitism elif 0 then noElitism
+    # Fourth arg -c the crossover rate
+    # Fifth arg -m the mutation rate
+    
+    name = "GABIL_Results.txt"
+
     # Genome instance
     genome = G1DVariableBinaryString.G1DVariableBinaryString(ruleLength=60)
 
@@ -104,28 +113,50 @@ def run_main():
     genome.evaluator.set(fitness)
     genome.mutator.set(Mutators.G1DBinaryStringMutatorFlip)
 
-    
-
-    # #NO GABIL 
-    # examples = data_set
-    # ga = GSimpleGA.GSimpleGA(genome)
-    # ga.selector.set(Selectors.GTournamentSelector)
-    # ga.setGenerations(500)
-
-    # ga.evolve(freq_stats=20)
-
-    # f = open('Respuesta.txt', 'a')
-
-    # f.write(str(ga.bestIndividual()))
-    # f.write("Prediccion" + str(predict(ga.bestIndividual().genomeList,test_set)) +"\n")
-
-    # f.close()
-
-
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
-    ga.selector.set(Selectors.GTournamentSelector)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
+
+    if len(sys.argv) > 1 and len(sys.argv[1:]) % 2 == 0:
+        i = 1
+        while i < len(sys.argv):
+            if sys.argv[i] == '-f':
+                name = sys.argv[i+1]
+            elif sys.argv[i] == '-s':
+                if sys.argv[i+1] == '0':
+                    ga.selector.set(Selectors.GTournamentSelector)
+                elif sys.argv[i+1] == '1':
+                    ga.selector.set(Selectors.GRouletteWheel)
+                else:
+                    print "ERROR: Unknown argument!"
+                    sys.exit(1)
+            elif sys.argv[i] == '-e':
+                if sys.argv[i+1] == '0':
+                    ga.setElitism(False)
+                elif sys.argv[i+1] == '1':
+                    ga.setElitism(True)
+                else:
+                    print "ERROR: Unknown argument!"
+                    sys.exit(1)
+            elif sys.argv[i] == '-c':
+                try:
+                    crossoverRate = float(sys.argv[i+1])
+                    ga.setCrossoverRate(crossoverRate)
+                except ValueError:
+                    print "ERROR: Unknown argument!"
+                    sys.exit(1)
+            elif sys.argv[i] == '-m':
+                try:
+                    mutationRate = float(sys.argv[i+1])
+                    ga.setMutationRate(mutationRate)
+                except ValueError:
+                    print "ERROR: Unknown argument!"
+                    sys.exit(1)
+            i += 2
+    else:
+        print "ERROR: Incorrect number of arguments!"
+        sys.exit(1)
+
     eval_func = 0
 
     # GABIL.
@@ -135,35 +166,25 @@ def run_main():
         if eval_func == 0:
             ga.setGenerations(100*j)
             # Do the evolution, with stats dump
-            # frequency of 20 generations
-            # if matches(ga.bestIndividual(),examples = [i]):
+            # frequency of 10 generations
             print " ********************************************************************************"
             ga.evolve(freq_stats=10)
             print " ********************************************************************************"
             j += 1
 
-        if matches(ga.bestIndividual(),e=i):
+        if matches(ga.bestIndividual(),i):
             eval_func = 1
         else:
             eval_func = 0
 
         examples.append(i)
 
-    f = open('RespuestaGABIL.txt', 'a')
+    f = open(name, 'a')
 
     f.write(str(ga.bestIndividual()))
-    f.write("Prediccion " + str(predict(ga.bestIndividual().genomeList,test_set)) + "%" + "\n")
+    f.write("Prediccion " + str(predict(ga.bestIndividual().genomeList,examples=test_set)) + "%" + "\n")
 
     f.close()
-
-
-    # SurvivalSelection = [True,False]
-    #def setElitism(self, flag):
-    # MutationP = [0.001,0.01,0.05]
-    #def setMutationRate(self, rate):
-    # CrossOverP = [0.2,0.4,0.6]
-    #def setCrossoverRate(self, rate):
-
 
 if __name__ == "__main__":
     run_main()
