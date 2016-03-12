@@ -121,21 +121,20 @@ def G1DVariableBinaryStringCrossover(genome, **args):
    numRules = len(gMax)/gMax.ruleLength
    cuts_max = [0,0]
    while cuts_max[0] >= cuts_max[1]:
-      cuts_min = [rand_randint(0, len(gMin)), rand_randint(0,len(gMin))]
+      cuts_min = [0,0]
+      while cuts_min[0] == cuts_min[1]:
+            cuts_min = [rand_randint(0, len(gMin)), rand_randint(0,len(gMin))]
 
       if cuts_min[0] > cuts_min[1]:
          Util.listSwapElement(cuts_min, 0, 1)
-      
       
       firstRuleToCut = rand_randint(1, numRules)
       secondRuleToCut = rand_randint(firstRuleToCut, numRules)
 
       cutOnFirstRule = [cuts_min[0] % gMax.ruleLength,cuts_min[1] % gMax.ruleLength]
-      # if cutOnFirstRule[1] == 0:
-      #    cutOnFirstRule[1] = secondRuleToCut*gMax.ruleLength
       cuts_max =[(firstRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[0],
                  (secondRuleToCut-1)*gMax.ruleLength+cutOnFirstRule[1]]
-   # print " - Number of rules on max: ",numRules," - cuts_min: ",cuts_min," - cuts_max: ",cuts_max
+  
    if args["count"] >= 1:
       firstPart = gMin[0:cuts_min[0]]
       secondPart = gMax[cuts_max[0]:cuts_max[1]]
@@ -162,6 +161,7 @@ def G1DVariableBinaryStringCrossover(genome, **args):
       brother[len(firstPart)+len(secondPart):len(firstPart)+len(secondPart)+len(thirdPart)] = thirdPart
       brother.stringLength = len(firstPart)+len(secondPart)+len(thirdPart)
       brother.genomeSize = len(firstPart)+len(secondPart)+len(thirdPart)
+      
    return (sister,brother)
 
 ####################

@@ -45,6 +45,7 @@ def matches(chromosome,e):
     for rule in string_split_iterator(chromosome,x=ruleLength):
         low = 0
         high = len(atributes[0])
+        success = True
         for i in range(15):
             atr.append(rule[low:high])
             for j in range(len(atr[i])):
@@ -55,27 +56,29 @@ def matches(chromosome,e):
                     else:
                         num = int(e[i])
                     if (atr[i][j] == 0) and (num < atributes[i][j]):
-                        return False
+                        success = False
                     elif num == atributes[i][j] and atr[i][j] == 0 and atr[i][j+1] == 0:
-                        return False
+                        success = False
                     elif (atr[i][j+1] == 0) and ((atributes[i][j] < num) and (num < atributes[i][j+1])):
-                        return False
+                        success = False
                     elif num == atributes[i][j+1] and atr[i][j+1] == 0 and atr[i][j+2] == 0:
-                        return False
+                        success = False
                     break
                 else:
                     if (atr[i][j] == 0) and (e[i] == atributes[i][j]):
-                        return False
+                        success = False
             low = high
             high += len(atributes[i+1])
+            if not success:
+                break
+        if success:
+            atr.append(rule[low:])
+            if (atr[15][0] == 1) and (e[15] == '-'):
+                success = False
+            elif (atr[15][0] == 0) and (e[15] == '+'):
+                success = False
 
-        atr.append(rule[low:])
-        if (atr[15][0] == 1) and (e[15] == '+'):
-            return True
-        elif (atr[15][0] == 0) and (e[15] == '-'):
-            return True
-
-    return False
+    return success
 
 def fitness(chromosome,examples=examples):
     score = 0
@@ -86,7 +89,7 @@ def fitness(chromosome,examples=examples):
             score += 1 
     if score == 0:
         return 0.0
-    return (100*(float(score)/float(len(examples)))**2)
+    return (100*float(score)/float(len(examples)))**2
 
 def predict(chromosome,examples=test_set):
     score = 0
@@ -116,50 +119,51 @@ def run_main():
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
+    ga.setMultiProcessing()
 
-    if len(sys.argv) > 1 and len(sys.argv[1:]) % 2 == 0:
-        i = 1
-        while i < len(sys.argv):
-            if sys.argv[i] == '-f':
-                name = sys.argv[i+1]
-            elif sys.argv[i] == '-s':
-                if sys.argv[i+1] == '0':
-                    ga.selector.set(Selectors.GTournamentSelector)
-                elif sys.argv[i+1] == '1':
-                    ga.selector.set(Selectors.GRouletteWheel)
-                else:
-                    print "ERROR: Unknown argument!"
-                    sys.exit(1)
-            elif sys.argv[i] == '-e':
-                if sys.argv[i+1] == '0':
-                    ga.setElitism(False)
-                elif sys.argv[i+1] == '1':
-                    ga.setElitism(True)
-                else:
-                    print "ERROR: Unknown argument!"
-                    sys.exit(1)
-            elif sys.argv[i] == '-c':
-                try:
-                    crossoverRate = float(sys.argv[i+1])
-                    ga.setCrossoverRate(crossoverRate)
-                except ValueError:
-                    print "ERROR: Unknown argument!"
-                    sys.exit(1)
-            elif sys.argv[i] == '-m':
-                try:
-                    mutationRate = float(sys.argv[i+1])
-                    ga.setMutationRate(mutationRate)
-                except ValueError:
-                    print "ERROR: Unknown argument!"
-                    sys.exit(1)
-            i += 2
-    else:
-        print "ERROR: Incorrect number of arguments!"
-        sys.exit(1)
-
-    eval_func = 0
+    if len(sys.argv) > 1:
+        if len(sys.argv[1:]) % 2 == 0:
+            i = 1
+            while i < len(sys.argv):
+                if sys.argv[i] == '-f':
+                    name = sys.argv[i+1]
+                elif sys.argv[i] == '-s':
+                    if sys.argv[i+1] == '0':
+                        ga.selector.set(Selectors.GTournamentSelector)
+                    elif sys.argv[i+1] == '1':
+                        ga.selector.set(Selectors.GRouletteWheel)
+                    else:
+                        print "ERROR: Unknown argument!"
+                        sys.exit(1)
+                elif sys.argv[i] == '-e':
+                    if sys.argv[i+1] == '0':
+                        ga.setElitism(False)
+                    elif sys.argv[i+1] == '1':
+                        ga.setElitism(True)
+                    else:
+                        print "ERROR: Unknown argument!"
+                        sys.exit(1)
+                elif sys.argv[i] == '-c':
+                    try:
+                        crossoverRate = float(sys.argv[i+1])
+                        ga.setCrossoverRate(crossoverRate)
+                    except ValueError:
+                        print "ERROR: Unknown argument!"
+                        sys.exit(1)
+                elif sys.argv[i] == '-m':
+                    try:
+                        mutationRate = float(sys.argv[i+1])
+                        ga.setMutationRate(mutationRate)
+                    except ValueError:
+                        print "ERROR: Unknown argument!"
+                        sys.exit(1)
+                i += 2
+        else:
+            print "ERROR: Incorrect number of arguments!"
+            sys.exit(1)
 
     # GABIL.
+    eval_func = 0
     j = 1
     for i in data_set[1:]:
         
