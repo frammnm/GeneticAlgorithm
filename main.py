@@ -73,16 +73,17 @@ def matches(chromosome,e):
                 break
         if success:
             atr.append(rule[low:])
-            if (atr[15][0] == 1) and (e[15] == '-'):
+            if (atr[15][0] == 1) and (e[15] == '+'):
+                return True
+            elif (atr[15][0] == 0) and (e[15] == '-'):
+                return True
+            else:
                 success = False
-            elif (atr[15][0] == 0) and (e[15] == '+'):
-                success = False
-
     return success
 
 def fitness(chromosome,examples=examples):
     score = 0
-    if (len(chromosome)/ruleLength) > 15 :
+    if (len(chromosome)/ruleLength) > 5:
         return 0.0
     for e in examples:
         if matches(chromosome,e):
@@ -166,7 +167,6 @@ def run_main():
     eval_func = 0
     j = 1
     for i in data_set[1:]:
-        
         if eval_func == 0:
             ga.setGenerations(100*j)
             # Do the evolution, with stats dump
@@ -186,10 +186,9 @@ def run_main():
     f = open(name, 'a')
 
     f.write(str(ga.bestIndividual()))
-    f.write("Prediccion " + str(predict(ga.bestIndividual().genomeList,examples=test_set)) + "%" + "\n")
+    f.write("Prediccion " + str(predict(ga.bestIndividual().genomeList)) + "%" + "\n")
 
     f.close()
 
 if __name__ == "__main__":
     run_main()
-   
