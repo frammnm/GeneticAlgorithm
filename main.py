@@ -32,6 +32,7 @@ atributes.append(['+','-']) # 15
 data_set = data_set_credit.read_data_set('data_set/training_set.txt')
 test_set = data_set_credit.read_data_set('data_set/test_set.txt')
 examples = [data_set[0]]
+#examples = data_set
 
 ruleLength = sum(len(atributes[i]) for i in range(len(atributes)))-1
 
@@ -82,7 +83,7 @@ def matches(chromosome,e):
 
 def fitness(chromosome,examples=examples):
     score = 0
-    if (len(chromosome)/ruleLength) > 15 :
+    if (len(chromosome)/ruleLength) > 8 :
         return 0.0
     for e in examples:
         if matches(chromosome,e):
@@ -118,9 +119,9 @@ def run_main():
 
     # Genetic Algorithm Instance
     ga = GSimpleGA.GSimpleGA(genome)
+    ga.selector.set(Selectors.GTournamentSelector)
     ga.terminationCriteria.set(GSimpleGA.ConvergenceCriteria)
     ga.setMultiProcessing()
-
     if len(sys.argv) > 1:
         if len(sys.argv[1:]) % 2 == 0:
             i = 1

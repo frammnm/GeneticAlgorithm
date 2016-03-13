@@ -1,0 +1,28 @@
+- GenomeBase
+	Score:			 1750.804042
+	Fitness:		 1750.804042
+
+	Params:		 {}
+
+	Slot [Evaluator] (Count: 1)
+		Name: fitness - Weight: 0.50
+	Slot [Initializator] (Count: 1)
+		Name: G1DVariableBinaryStringInitializator - Weight: 0.50
+		Doc:  1D Binary String initializator 
+	Slot [Mutator] (Count: 1)
+		Name: G1DBinaryStringMutatorFlip - Weight: 0.50
+		Doc:  The classical flip mutator for binary strings 
+	Slot [Crossover] (Count: 1)
+		Name: G1DVariableBinaryStringCrossover - Weight: 0.50
+		Doc:  The 1D Variable Binary String crossover, Two Point
+
+   .. warning:: You can't use this crossover method for binary strings with length of 1.
+
+   
+
+- G1DVariableBinaryString
+	String length:	 360
+	Rule length:	 60
+	String:		 111101101101110101101111111101111011111101111111111001011101110110100101100110010001001001111011111101111111111001001101111111100101111110010100000111011111110101111111111000100101110111100101100110011100001101111101110001111111111001001101111111000101101101110111011101111011111101111111111001011101111101101101110101100111010101111011111101111111111000100110
+
+Prediccion 32.3076923077%
